@@ -8,19 +8,19 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(): object
     {
-        //
+        return Category::all();
     }
 
-    public function store(Request $request)
+    public function store(Request $request): object
     {
-        //
+        return Category::create($request->all());
     }
 
-    public function show(Category $category)
+    public function show(Category $category): object
     {
-        //
+        return $category;
     }
 
     public function update(Request $request, Category $category)
