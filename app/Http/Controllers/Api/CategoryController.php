@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    private $rules = [
+        'name' => 'required|max:255',
+        'is_active' => 'boolean'
+    ];
+
     public function index(): object
     {
         return Category::all();
@@ -15,10 +20,7 @@ class CategoryController extends Controller
 
     public function store(Request $request): object
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'is_active' => 'boolean'
-        ]);
+        $this->validate($request, $this->rules);
 
         return Category::create($request->all());
     }
@@ -28,9 +30,13 @@ class CategoryController extends Controller
         return $category;
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category): object
     {
-        //
+        $this->validate($request, $this->rules);
+
+        $category->update($request->all());
+
+        return $category;
     }
 
     public function destroy(Category $category)
