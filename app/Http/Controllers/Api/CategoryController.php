@@ -15,6 +15,11 @@ class CategoryController extends Controller
 
     public function store(Request $request): object
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'is_active' => 'boolean'
+        ]);
+
         return Category::create($request->all());
     }
 
