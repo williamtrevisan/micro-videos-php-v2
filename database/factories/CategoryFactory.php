@@ -5,10 +5,10 @@
 use App\Models\Category;
 use Faker\Generator as Faker;
 
-$factory->define(Category::class, function (Faker $faker) {
+$factory->define(Category::class, function (Faker $faker): array {
     return [
         'name' => $faker->colorName,
         'description' => rand(1, 10) % 2 == 0 ? $faker->sentence() : null,
     ];
 });
- 
+
